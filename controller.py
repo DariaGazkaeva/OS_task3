@@ -4,6 +4,7 @@ import os
 import sys
 import signal
 
+
 produced = 0
 pid1 = -1
 pid2 = -1

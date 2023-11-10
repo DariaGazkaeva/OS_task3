@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import os
 import sys
 import signal
@@ -37,7 +39,7 @@ def main():
                 file3.write(line)
                 file3.flush()
                 res = file2.readline()
-                print(line, "=", res)
+                print(line[:-1], "=", res[:-1])
                 produced += 1
 
             file1.close()
@@ -52,11 +54,11 @@ def main():
             os.close(pipe_write_0_2)
             os.close(pipe_read_2_0)
 
-            os.execl(sys.executable, sys.executable, "/usr/bin/bc")
+            os.execl("/usr/bin/bc", "bc")
     else:
         os.dup2(pipe_write_1_0, 1)
 
-        os.execl(sys.executable, sys.executable, "./producer.py")
+        os.execl("./producer.py", "producer.py")
 
         os.close(pipe_read_2_0)
         os.close(pipe_write_2_0)
